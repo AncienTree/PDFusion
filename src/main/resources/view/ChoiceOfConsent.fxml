@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="com.pl.maksimum.controller.ChoiceOfConsentController">
+   <children>
+      <Label fx:id="zgodaiInfoLabel" text="Proszę o wybranie oświadczenia zgody">
+         <padding>
+            <Insets bottom="2.0" left="5.0" right="2.0" top="0.0" />
+         </padding>
+      </Label>
+      <Separator prefWidth="200.0" />
+      <AnchorPane>
+         <children>
+            <CheckBox fx:id="takZgodaCheckBox" layoutX="6.0" layoutY="3.0" mnemonicParsing="false" text="Tak" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="5.0" />
+            <CheckBox fx:id="nieZgodaCheckBox" layoutX="113.0" layoutY="6.0" mnemonicParsing="false" text="Nie" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="5.0" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+      </AnchorPane>
+      <Label fx:id="checkBoxInfoLabel" text="..." />
+   </children>
+   <padding>
+      <Insets top="6.0" />
+   </padding>
+</VBox>

@@ -1,0 +1,55 @@
+.root {
+    -fx-background-color : #dfe3ee;
+}
+
+.button {
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 13;
+    -fx-background-color: #DDDDDD;
+    -fx-border-color: grey;
+    -fx-border-width: 0 2 2 0;
+}
+
+.button:hover {
+    -fx-background-color: #EEEEEE;
+    -fx-text-fill: black;
+    -fx-border-width: 0 2 2 0;
+}
+
+.label {
+    -fx-font-family: "Comic Sans MS";
+}
+
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color:grey;
+    -fx-border-radius:3px; 
+}
+
+.check-box {
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 13;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #111111;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #dfe3ee;
+}
+
+#FrontText{
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 16;
+}
+
+#zgodaiInfoLabel{
+    -fx-text-align: center;
+}
+
+.separator *.line { 
+    -fx-border-color : #eff4ff;
+    -fx-border-style: solid;
+    -fx-border-width: 2px;
+}

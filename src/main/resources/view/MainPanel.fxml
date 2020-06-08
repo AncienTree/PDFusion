@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+
+<VBox stylesheets="@layout.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="com.pl.maksimum.controller.MainPaneController">
+   <children>
+      <fx:include fx:id="menu" source="Menu.fxml" />
+      <fx:include fx:id="fileAA" source="FileAA.fxml" />
+      <fx:include fx:id="choiceOfConsent" source="ChoiceOfConsent.fxml" />
+      <fx:include fx:id="bottomPane" source="BottomPane.fxml" />
+   </children>
+</VBox>
