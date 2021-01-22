@@ -52,13 +52,15 @@ public class MainPaneController implements Initializable {
     File plik3;
     File plik4;
     File plik5;
+    File plik6;
+    File plik7;
     File yesFile;
     File noFile;
     File aaFile;
     File reg;
-    File pgsAA5;
-    File pgsAA6;
-    File pgsAA7;
+    File AAContractPlk;
+    File AAContractAbo;
+    File AAAttachment;
 
     // Główna funkcja do złączania plików w całośc.
     public void merge() {
@@ -68,22 +70,34 @@ public class MainPaneController implements Initializable {
             reg = bottomPaneController.getPlik();
             aaFile = fileAAController.getPlik();
             createOuptuAA(aaFile);
+//            insertSignature(plik2, 2,360, 640, 230, 80);
 
             // Scalanie plików
-            pdfMerger.addSource(plik1);						// Strona startowa
-            pdfMerger.addSource(pgsAA5);					// Strona 5 pliku AA
-            pdfMerger.addSource(plik2);						// Regulaminy
-//            pdfMerger.addSource(pgsAA6);					// Strona 6 pliku AA
-            pdfMerger.addSource(pgsAA7);    				// Strona 7 pliku AA
-            pdfMerger.addSource(plik3);						// Załącznik od umowy
-            if (choiceOfConsentController.isSelectedYes) {                      // Oświadczenie Tak/Nie
+            pdfMerger.addSource(plik1);						// Check Lista
+            pdfMerger.addSource(AAContractPlk);				// Strona X pliku AA Umowa
+            pdfMerger.addSource(plik2);						// Regulaminy + podpis
+            pdfMerger.addSource(plik3);						// Załącznik do umowy numer 3
+            pdfMerger.addSource(AAAttachment);    			// Strona X pliku AA Umowa śut
+            pdfMerger.addSource(plik4);						// Załącznik do umowy numer 5
+            if (choiceOfConsentController.isSelectedYes) {  // Oświadczenie Tak/Nie
                 pdfMerger.addSource(yesFile);
             } else {
                 pdfMerger.addSource(noFile);
             }
-            pdfMerger.addSource(plik4);						// Odstąpienie + regulamin konwersji
-            pdfMerger.addSource(reg);						// Regulamin z dysku
-            pdfMerger.addSource(plik5);						// Cenniki
+            pdfMerger.addSource(plik5);						// Pakiet + oświadzcenie
+            pdfMerger.addSource(AAContractAbo); 			// Strona X pliku AA dla klienta
+            pdfMerger.addSource(plik2);						// Regulaminy + podpis
+            pdfMerger.addSource(plik3);						// Załącznik do umowy numer 3
+            pdfMerger.addSource(AAAttachment);  			// Strona X pliku AA Umowa śut
+            pdfMerger.addSource(reg);						// Regulamin promocji z dysku
+            pdfMerger.addSource(plik6);						// Cenniki
+            pdfMerger.addSource(plik4);						// Załącznik do umowy numer 5
+            if (choiceOfConsentController.isSelectedYes) {  // Oświadczenie Tak/Nie
+                pdfMerger.addSource(yesFile);
+            } else {
+                pdfMerger.addSource(noFile);
+            }
+            pdfMerger.addSource(plik7);						// Odstąpienie od umowy
             pdfMerger.setDestinationFileName(getDirFile());
             pdfMerger.mergeDocuments(MemoryUsageSetting.setupMainMemoryOnly());
 
@@ -130,47 +144,47 @@ public class MainPaneController implements Initializable {
 
     // Wyodrębnienie stron z pliku AA
     public void createOuptuAA(File file) {
-        pgsAA5 = file;
-        pgsAA6 = file;
-        pgsAA7 = file;
+        AAContractPlk = file;
+        AAContractAbo = file;
+        AAAttachment = file;
 
         try {
-            // 5 strona
-            PDDocument doc5 = PDDocument.load(pgsAA5);
-            for (int i = doc5.getNumberOfPages() - 1; i >= 0; i--) {
+            // 1 strona Umowa dla PLK
+            PDDocument docPlk = PDDocument.load(AAContractPlk);
+            for (int i = docPlk.getNumberOfPages() - 1; i >= 0; i--) {
+                if (i == 0) {
+                    continue;
+                }
+                docPlk.removePage(i);
+            }
+            docPlk.save(currentDir + "\\tmp\\1.pdf");
+            docPlk.close();
+            AAContractPlk = new File(currentDir + "\\tmp\\1.pdf");
+
+            // 5 strona Umowa dla abonenta
+            PDDocument docAbo = PDDocument.load(AAContractAbo);
+            for (int i = docAbo.getNumberOfPages() - 1; i >= 0; i--) {
                 if (i == 4) {
                     continue;
                 }
-                doc5.removePage(i);
+                docAbo.removePage(i);
             }
-            doc5.save(currentDir + "\\tmp\\1.pdf");
-            doc5.close();
-            pgsAA5 = new File(currentDir + "\\tmp\\1.pdf");
+            docAbo.save(currentDir + "\\tmp\\2.pdf");
+            docAbo.close();
+            AAContractAbo = new File(currentDir + "\\tmp\\2.pdf");
 
-            // 6 strona
-            PDDocument doc6 = PDDocument.load(pgsAA6);
-            for (int i = doc6.getNumberOfPages() - 1; i >= 0; i--) {
-                if (i == 5) {
-                    continue;
-                }
-                doc6.removePage(i);
-            }
-            doc6.save(currentDir + "\\tmp\\2.pdf");
-            doc6.close();
-            pgsAA6 = new File(currentDir + "\\tmp\\2.pdf");
-
-            // 7 strona + podpis
-            PDDocument doc7 = PDDocument.load(pgsAA7);
-            for (int i = doc7.getNumberOfPages() - 1; i >= 0; i--) {
+            // 7 Załącznik + podpis
+            PDDocument docAtt = PDDocument.load(AAAttachment);
+            for (int i = docAtt.getNumberOfPages() - 1; i >= 0; i--) {
                 if (i == 6) {
                     continue;
                 }
-                doc7.removePage(i);
+                docAtt.removePage(i);
             }
-            doc7.save(currentDir + "\\tmp\\3.pdf");
-            doc7.close();
-            pgsAA7 = new File(currentDir + "\\tmp\\3.pdf");
-            insertSignatureAA(pgsAA7);
+            docAtt.save(currentDir + "\\tmp\\3.pdf");
+            docAtt.close();
+            AAAttachment = new File(currentDir + "\\tmp\\3.pdf");
+            insertSignature(AAAttachment, 0,320, 60, 260, 80);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -180,24 +194,24 @@ public class MainPaneController implements Initializable {
         }
     }
 
-    // Wstawianie podpisu do pliku AA
-    public void insertSignatureAA(File file) {
+    // Wstawianie podpisu do pliku
+    public void insertSignature(File file, int pageIndex, int x, int y, int width, int height) {
         try {
             PDDocument doc = PDDocument.load(file);
-            PDPage page = doc.getPage(0);
+            PDPage page = doc.getPage(pageIndex);
             PDImageXObject pdImage = PDImageXObject.createFromFile(currentDir + "\\sign\\stamp1.gif", doc);
             PDPageContentStream contentStream = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.APPEND, true);
 
             //ELA
-            contentStream.drawImage(pdImage, 320, 60, 260, 80);
+            contentStream.drawImage(pdImage, x, y, width, height);
             contentStream.close();
             doc.save(file);
             doc.close();
         } catch (Exception e) {
-            Alerts.alertError("Error", null, "Error, insert signature file AA encountered an error.");
+            Alerts.alertError("Error", null, "Error, insert signature file encounter an error. \n" + e.toString());
 
             System.err.println(".....................................................");
-            System.err.println("Nastąpił wyjątek przy wstawianiu podpisu do pliku AA.");
+            System.err.println("Nastąpił wyjątek przy wstawianiu podpisu do pliku.");
             System.err.println(".....................................................");
             e.printStackTrace();
         }
@@ -287,15 +301,11 @@ public class MainPaneController implements Initializable {
         File temp1 = new File(currentDir + "\\tmp\\1.pdf");
         File temp2 = new File(currentDir + "\\tmp\\2.pdf");
         File temp3 = new File(currentDir + "\\tmp\\3.pdf");
-        File temp4 = new File(currentDir + "\\tmp\\4.pdf");
-        File temp5 = new File(currentDir + "\\tmp\\5.pdf");
 
         try {
             temp1.delete();
             temp2.delete();
             temp3.delete();
-            temp4.delete();
-            temp5.delete();
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("..................................");
@@ -311,13 +321,15 @@ public class MainPaneController implements Initializable {
     ////////////////////////////////////////////////////////////////
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        plik1 = new File(currentDir + "\\doc\\1.first.pdf");
-        plik2 = new File(currentDir + "\\doc\\2.regulamin.pdf");
-        plik3 = new File(currentDir + "\\doc\\3.attachment.pdf");
-        plik4 = new File(currentDir + "\\doc\\5.ods_prom.pdf");
-        plik5 = new File(currentDir + "\\doc\\6.pricelist.pdf");
-        yesFile = new File(currentDir + "\\doc\\4.ostak.pdf");
-        noFile = new File(currentDir + "\\doc\\4.osnie.pdf");
+        plik1 = new File(currentDir + "\\doc\\1.CheckList.pdf");
+        plik2 = new File(currentDir + "\\doc\\2.Reg.pdf");
+        plik3 = new File(currentDir + "\\doc\\3.Att3.pdf");
+        plik4 = new File(currentDir + "\\doc\\4.Att5.pdf");
+        plik5 = new File(currentDir + "\\doc\\5.Package.pdf");
+        plik6 = new File(currentDir + "\\doc\\6.PriceList.pdf");
+        plik7 = new File(currentDir + "\\doc\\7.Withdrawal.pdf");
+        yesFile = new File(currentDir + "\\doc\\osw_tak.pdf");
+        noFile = new File(currentDir + "\\doc\\osw_nie.pdf");
 
         bottomPaneController.getCreateButton().setOnAction(event -> {
             // Protection statement

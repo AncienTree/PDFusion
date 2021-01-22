@@ -18,194 +18,176 @@
 <BorderPane stylesheets="@layout.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pl.maksimum.controller.SettingsController">
    <center>
       <TabPane tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-         <tabs>
-            <Tab text="Ścieżka zapisu">
-               <content>
-                  <VBox prefHeight="227.0" prefWidth="365.0">
-                     <children>
-                        <Label id="FrontText" prefHeight="25.0" prefWidth="452.0" text="Wybór opcji zapisu wygenerowanego pliku .pdf" textAlignment="CENTER" wrapText="true">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Separator prefWidth="200.0" />
-                        <Label text="Wybór domyślnej ścieżki wygenerowanego pliku (jeżeli wybrano opcję)">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <TextField fx:id="tab1DefaultDirTextField">
-                           <VBox.margin>
-                              <Insets left="20.0" right="10.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <Button fx:id="tab1DirButton" mnemonicParsing="false" text="Wybierz" textAlignment="CENTER">
-                           <VBox.margin>
-                              <Insets left="5.0" right="5.0" top="15.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Button>
-                        <Separator prefWidth="200.0">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Separator>
-                        <CheckBox fx:id="tab1DefaultDirCheckBox" mnemonicParsing="false" text="Zapis do domyślnej ścieżki pliku.">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
-                           </VBox.margin>
-                        </CheckBox>
-                        <CheckBox fx:id="tab1AskDirCheckBox" mnemonicParsing="false" selected="true" text="Pytaj o miejsce zapisu pliku">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </VBox.margin>
-                        </CheckBox>
-                     </children>
-                  </VBox>
-               </content>
-            </Tab>
-            <Tab text="Plik AA">
-               <content>
-                  <AnchorPane>
-                     <children>
-                        <ListView fx:id="tab2AAListView" layoutX="4.0" prefHeight="223.0" prefWidth="200.0" />
-                     </children></AnchorPane>
-               </content>
-            </Tab>
-            <Tab text="Pusta strona">
-               <content>
-                  <VBox>
-                     <children>
-                        <Label id="FrontText" text="Wybierz jedną z poniższych opcji" textAlignment="CENTER" wrapText="true">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Separator />
-                        <CheckBox fx:id="tab3NoEmptyPageCheckBox" mnemonicParsing="false" selected="true" text="Nie dodawaj pustej strony">
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </CheckBox>
-                        <CheckBox fx:id="tab3OddEmptyPageCheckBox" mnemonicParsing="false" text="Dodaj pustą strone w przypadku nieparzystej ilości stron">
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </CheckBox>
-                        <CheckBox fx:id="tab3AlwaysEmptyPageCheckBox" mnemonicParsing="false" text="Dodawaj zawsze">
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </CheckBox>
-                     </children>
-                  </VBox>
-               </content>
-            </Tab>
-            <Tab text="Kolejność plików">
-               <content>
-                  <AnchorPane />
-               </content>
-            </Tab>
-            <Tab text="Kontrola">
-               <content>
-                  <VBox>
-                     <children>
-                        <Label id="FrontText" text="Wprowadź prawidłowe wartości kontrolne" textAlignment="CENTER" wrapText="true">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Separator />
-                        <HBox>
-                           <children>
-                              <Label text="Ilość stron pliku AA:">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="tab5AACountTextField" prefHeight="25.0" prefWidth="34.0" text="8">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </TextField>
-                           </children>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <Label text="Ilość stron wygenerowanego pliku (bez pustej strony):">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="tab5FileCountTextField" prefHeight="25.0" prefWidth="30.0" text="39">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="2.0" />
-                                 </HBox.margin>
-                              </TextField>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </content>
-            </Tab>
-         </tabs>
+         <Tab text="Ścieżka zapisu">
+            <VBox prefHeight="227.0" prefWidth="365.0">
+               <Label id="FrontText" prefHeight="25.0" prefWidth="452.0"
+                      text="Wybór opcji zapisu wygenerowanego pliku .pdf" textAlignment="CENTER" wrapText="true">
+                  <font>
+                     <Font size="16.0"/>
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="10.0" left="5.0" right="5.0" top="10.0"/>
+                  </VBox.margin>
+               </Label>
+               <Separator prefWidth="200.0"/>
+               <Label text="Wybór domyślnej ścieżki wygenerowanego pliku (jeżeli wybrano opcję)">
+                  <VBox.margin>
+                     <Insets bottom="10.0" left="5.0" right="5.0" top="5.0"/>
+                  </VBox.margin>
+               </Label>
+               <TextField fx:id="tab1DefaultDirTextField">
+                  <VBox.margin>
+                     <Insets left="20.0" right="10.0"/>
+                  </VBox.margin>
+               </TextField>
+               <Button fx:id="tab1DirButton" mnemonicParsing="false" text="Wybierz" textAlignment="CENTER">
+                  <VBox.margin>
+                     <Insets left="5.0" right="5.0" top="15.0"/>
+                  </VBox.margin>
+                  <font>
+                     <Font size="13.0"/>
+                  </font>
+               </Button>
+               <Separator prefWidth="200.0">
+                  <VBox.margin>
+                     <Insets top="10.0"/>
+                  </VBox.margin>
+               </Separator>
+               <CheckBox fx:id="tab1DefaultDirCheckBox" mnemonicParsing="false"
+                         text="Zapis do domyślnej ścieżki pliku.">
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="10.0"/>
+                  </VBox.margin>
+               </CheckBox>
+               <CheckBox fx:id="tab1AskDirCheckBox" mnemonicParsing="false" selected="true"
+                         text="Pytaj o miejsce zapisu pliku">
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                  </VBox.margin>
+               </CheckBox>
+            </VBox>
+         </Tab>
+         <Tab text="Plik AA">
+            <AnchorPane>
+               <ListView fx:id="tab2AAListView" layoutX="4.0" prefHeight="223.0" prefWidth="200.0"/>
+            </AnchorPane>
+         </Tab>
+         <Tab text="Pusta strona">
+            <VBox>
+               <Label id="FrontText" text="Wybierz jedną z poniższych opcji" textAlignment="CENTER"
+                      wrapText="true">
+                  <font>
+                     <Font size="16.0"/>
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="10.0" left="5.0" right="5.0" top="10.0"/>
+                  </VBox.margin>
+               </Label>
+               <Separator/>
+               <CheckBox fx:id="tab3NoEmptyPageCheckBox" mnemonicParsing="false" selected="true"
+                         text="Nie dodawaj pustej strony">
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="10.0"/>
+                  </VBox.margin>
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+               </CheckBox>
+               <CheckBox fx:id="tab3OddEmptyPageCheckBox" mnemonicParsing="false"
+                         text="Dodaj pustą strone w przypadku nieparzystej ilości stron">
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                  </VBox.margin>
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+               </CheckBox>
+               <CheckBox fx:id="tab3AlwaysEmptyPageCheckBox" mnemonicParsing="false" text="Dodawaj zawsze">
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                  </VBox.margin>
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+               </CheckBox>
+            </VBox>
+         </Tab>
+         <Tab text="Kolejność plików">
+            <AnchorPane/>
+         </Tab>
+         <Tab text="Kontrola">
+            <VBox>
+               <Label id="FrontText" text="Wprowadź prawidłowe wartości kontrolne" textAlignment="CENTER"
+                      wrapText="true">
+                  <font>
+                     <Font size="16.0"/>
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="10.0" left="5.0" right="5.0" top="10.0"/>
+                  </VBox.margin>
+               </Label>
+               <Separator/>
+               <HBox>
+                  <Label text="Ilość stron pliku AA:">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="10.0"/>
+                     </HBox.margin>
+                     <font>
+                        <Font size="13.0"/>
+                     </font>
+                  </Label>
+                  <TextField fx:id="tab5AACountTextField" prefHeight="25.0" prefWidth="34.0" text="8">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                     </HBox.margin>
+                  </TextField>
+               </HBox>
+               <HBox>
+                  <Label text="Ilość stron wygenerowanego pliku (bez pustej strony):">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                     </HBox.margin>
+                     <font>
+                        <Font size="13.0"/>
+                     </font>
+                  </Label>
+                  <TextField fx:id="tab5FileCountTextField" prefHeight="25.0" prefWidth="30.0" text="39">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="2.0"/>
+                     </HBox.margin>
+                  </TextField>
+               </HBox>
+            </VBox>
+         </Tab>
       </TabPane>
    </center>
    <bottom>
       <HBox prefHeight="0.0" prefWidth="407.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="saveButton" mnemonicParsing="false" text="Zapisz">
-               <HBox.margin>
-                  <Insets bottom="2.0" left="120.0" top="2.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="cancelButton" mnemonicParsing="false" text="Anuluj">
-               <HBox.margin>
-                  <Insets bottom="2.0" left="60.0" right="50.0" top="2.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-         </children>
          <BorderPane.margin>
-            <Insets bottom="2.0" top="2.0" />
+            <Insets bottom="2.0" top="2.0"/>
          </BorderPane.margin>
+         <Button fx:id="saveButton" mnemonicParsing="false" text="Zapisz">
+            <HBox.margin>
+               <Insets bottom="2.0" left="120.0" top="2.0"/>
+            </HBox.margin>
+            <font>
+               <Font size="14.0"/>
+            </font>
+         </Button>
+         <Button fx:id="cancelButton" mnemonicParsing="false" text="Anuluj">
+            <HBox.margin>
+               <Insets bottom="2.0" left="60.0" right="50.0" top="2.0"/>
+            </HBox.margin>
+            <font>
+               <Font size="14.0"/>
+            </font>
+         </Button>
       </HBox>
    </bottom>
 </BorderPane>

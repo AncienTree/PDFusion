@@ -14,12 +14,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         System.out.println("Start App");
-
         final String appName = "PDF Fusion";
         try {
             Image image = new Image("file:pdf.png");
-            Parent parent = (Parent) FXMLLoader.load(getClass().getResource(
-                    "/view/MainPanel.fxml"));
+            Parent parent = FXMLLoader.load(getClass().getResource("/view/MainPanel.fxml"));
             Scene scene = new Scene(parent);
 
             //Ustawienia Stage'a

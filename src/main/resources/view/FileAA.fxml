@@ -9,40 +9,36 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="vbox" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pl.maksimum.controller.FileAAController">
-   <children>
-      <Separator prefWidth="200.0" />
-      <Label fx:id="infoAALabel" text="Wybierz plik AA z dysku.">
-         <padding>
-            <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
-         </padding></Label>
-      <AnchorPane>
-         <children>
-            <HBox>
-               <children>
-                  <TextField fx:id="plikAADirTextField" prefHeight="25.0" prefWidth="223.0" text="plik AA.pdf">
-                     <padding>
-                        <Insets bottom="2.0" left="5.0" top="2.0" />
-                     </padding>
-                     <HBox.margin>
-                        <Insets left="2.0" right="5.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <Button fx:id="selectAAButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Wybierz">
-                     <padding>
-                        <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
-                     </padding>
-                     <HBox.margin>
-                        <Insets right="2.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
-         </children>
-         <padding>
-            <Insets bottom="5.0" />
-         </padding>
-      </AnchorPane>
-      <Separator prefWidth="200.0" />
-   </children>
+<VBox fx:id="vbox" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.pl.maksimum.controller.FileAAController">
+   <Separator prefWidth="200.0"/>
+   <Label fx:id="infoAALabel" text="Wybierz plik AA z dysku.">
+      <padding>
+         <Insets bottom="2.0" left="5.0" right="5.0" top="2.0"/>
+      </padding>
+   </Label>
+   <AnchorPane>
+      <padding>
+         <Insets bottom="5.0"/>
+      </padding>
+      <HBox>
+         <TextField fx:id="plikAADirTextField" prefHeight="25.0" prefWidth="223.0" text="plik AA.pdf">
+            <padding>
+               <Insets bottom="2.0" left="5.0" top="2.0"/>
+            </padding>
+            <HBox.margin>
+               <Insets left="2.0" right="5.0"/>
+            </HBox.margin>
+         </TextField>
+         <Button fx:id="selectAAButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Wybierz">
+            <padding>
+               <Insets bottom="2.0" left="5.0" right="5.0" top="2.0"/>
+            </padding>
+            <HBox.margin>
+               <Insets right="2.0"/>
+            </HBox.margin>
+         </Button>
+      </HBox>
+   </AnchorPane>
+   <Separator prefWidth="200.0"/>
 </VBox>

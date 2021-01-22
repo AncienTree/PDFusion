@@ -5,19 +5,16 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 
-<MenuBar xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="com.pl.maksimum.controller.MenuController">
-   <menus>
-      <Menu mnemonicParsing="false" text="Plik">
-         <items>
-            <MenuItem fx:id="infoMenuItem" mnemonicParsing="false" text="Info" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" text="Zamknij" />
-         </items>
-      </Menu>
-      <Menu mnemonicParsing="false" text="Opcje">
-         <items>
-            <MenuItem fx:id="settingsMenuItems" disable="true" mnemonicParsing="false" text="Ustawienia" />
-         </items>
-      </Menu>
-   </menus>
+<MenuBar xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/"
+         fx:controller="com.pl.maksimum.controller.MenuController">
+   <Menu mnemonicParsing="false" text="Plik">
+      <MenuItem fx:id="infoMenuItem" mnemonicParsing="false" text="Info"/>
+      <SeparatorMenuItem mnemonicParsing="false"/>
+      <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" text="Zamknij"/>
+   </Menu>
+   <Menu mnemonicParsing="false" text="Opcje">
+      <items>
+         <MenuItem fx:id="settingsMenuItems" disable="true" mnemonicParsing="false" text="Ustawienia"/>
+      </items>
+   </Menu>
 </MenuBar>

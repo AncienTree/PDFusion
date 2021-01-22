@@ -9,40 +9,36 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="com.pl.maksimum.controller.BottomPaneController">
-   <children>
-      <Label fx:id="umowaInfoLabel" prefHeight="17.0" prefWidth="280.0" text="Wybierz regulamin promocji z dysku.">
-         <padding>
-            <Insets bottom="2.0" left="5.0" top="5.0" />
-         </padding></Label>
-      <Separator prefWidth="200.0" />
-      <AnchorPane fx:id="anchorPane" prefHeight="28.0" prefWidth="269.0">
-         <children>
-            <HBox>
-               <children>
-                  <TextField fx:id="umowaDirTextField" prefHeight="25.0" prefWidth="223.0" text="regulamin.pdf">
-                     <padding>
-                        <Insets bottom="2.0" left="5.0" top="2.0" />
-                     </padding>
-                     <HBox.margin>
-                        <Insets left="2.0" right="5.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <Button fx:id="selectUmowaButton" mnemonicParsing="false" text="Wybierz">
-                     <HBox.margin>
-                        <Insets right="3.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
-         </children>
-      </AnchorPane>
-      <Separator prefWidth="200.0" />
-      <Separator prefWidth="200.0" />
-      <AnchorPane VBox.vgrow="ALWAYS">
-         <children>
-            <Button fx:id="createButton" alignment="CENTER" layoutX="120.0" layoutY="6.0" mnemonicParsing="false" text="Stwórz" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="119.0" AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="5.0" />
-         </children>
-      </AnchorPane>
-   </children>
+<VBox xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/"
+      fx:controller="com.pl.maksimum.controller.BottomPaneController">
+   <Label fx:id="umowaInfoLabel" prefHeight="17.0" prefWidth="280.0" text="Wybierz regulamin promocji z dysku.">
+      <padding>
+         <Insets bottom="2.0" left="5.0" top="5.0"/>
+      </padding>
+   </Label>
+   <Separator prefWidth="200.0"/>
+   <AnchorPane fx:id="anchorPane" prefHeight="28.0" prefWidth="269.0">
+      <HBox>
+         <TextField fx:id="umowaDirTextField" prefHeight="25.0" prefWidth="223.0" text="regulamin.pdf">
+            <padding>
+               <Insets bottom="2.0" left="5.0" top="2.0"/>
+            </padding>
+            <HBox.margin>
+               <Insets left="2.0" right="5.0"/>
+            </HBox.margin>
+         </TextField>
+         <Button fx:id="selectUmowaButton" mnemonicParsing="false" text="Wybierz">
+            <HBox.margin>
+               <Insets right="3.0"/>
+            </HBox.margin>
+         </Button>
+      </HBox>
+   </AnchorPane>
+   <Separator prefWidth="200.0"/>
+   <Separator prefWidth="200.0"/>
+   <AnchorPane VBox.vgrow="ALWAYS">
+      <Button fx:id="createButton" alignment="CENTER" layoutX="120.0" layoutY="6.0" mnemonicParsing="false"
+              text="Stwórz" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="119.0"
+              AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="5.0"/>
+   </AnchorPane>
 </VBox>
