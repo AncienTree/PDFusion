@@ -10,8 +10,6 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 import com.pl.maksimum.util.Alerts;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -166,65 +164,39 @@ public class SettingsController implements Initializable {
         }
 
         // Zakładka nr 3 zabezpieczenie przed wyborem kilku opcji checkbox
-        tab3NoEmptyPageCheckBox.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                setTab3AlwaysEmptyPageCheckBox(false);
-                setTab3OddEmptyPageCheckBox(false);
-            }
+        tab3NoEmptyPageCheckBox.setOnAction(event -> {
+            setTab3AlwaysEmptyPageCheckBox(false);
+            setTab3OddEmptyPageCheckBox(false);
         });
-        tab3AlwaysEmptyPageCheckBox.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                setTab3NoEmptyPageCheckBox(false);
-                setTab3OddEmptyPageCheckBox(false);
-            }
+        tab3AlwaysEmptyPageCheckBox.setOnAction(event -> {
+            setTab3NoEmptyPageCheckBox(false);
+            setTab3OddEmptyPageCheckBox(false);
         });
-        tab3OddEmptyPageCheckBox.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                setTab3AlwaysEmptyPageCheckBox(false);
-                setTab3NoEmptyPageCheckBox(false);
-            }
+        tab3OddEmptyPageCheckBox.setOnAction(event -> {
+            setTab3AlwaysEmptyPageCheckBox(false);
+            setTab3NoEmptyPageCheckBox(false);
         });
 
         // Zakładka 1 zabezpieczenie przed wyborem kilku opcji checkbox
-        tab1AskDirCheckBox.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                setTab1DefaultDirCheckBox(false);
-            }
-        });
-        tab1DefaultDirCheckBox.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                setTab1AskDirCheckBox(false);
-
-            }
-        });
+        tab1AskDirCheckBox.setOnAction(event -> setTab1DefaultDirCheckBox(false));
+        tab1DefaultDirCheckBox.setOnAction(event -> setTab1AskDirCheckBox(false));
 
         // Anuluj button
-        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Stage stage = (Stage) cancelButton.getScene().getWindow();
-                stage.close();
-            }
+        cancelButton.setOnAction(event -> {
+            Stage stage = (Stage) cancelButton.getScene().getWindow();
+            stage.close();
         });
 
         // Wybór ścieżki
         //TODO zabezpieczenie przed nie wybraniem
-        tab1DirButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                File dir;
-                tab1DefaultDirTextField.setText(null);
-                DirectoryChooser dirChooser = new DirectoryChooser();
-                dirChooser.setTitle("Wybierz katalog");
-                dir = dirChooser.showDialog(new Stage());
+        tab1DirButton.setOnAction(event -> {
+            File dir;
+            tab1DefaultDirTextField.setText(null);
+            DirectoryChooser dirChooser = new DirectoryChooser();
+            dirChooser.setTitle("Wybierz katalog");
+            dir = dirChooser.showDialog(new Stage());
 
-                tab1DefaultDirTextField.setText(dir.getAbsolutePath());
-            }
+            tab1DefaultDirTextField.setText(dir.getAbsolutePath());
         });
 
     }

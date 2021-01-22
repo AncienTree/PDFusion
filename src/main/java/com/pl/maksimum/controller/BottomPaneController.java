@@ -7,14 +7,11 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import com.pl.maksimum.util.Alerts;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.stage.FileChooser;
@@ -34,7 +31,6 @@ public class BottomPaneController implements Initializable {
     // Zmienne
     private File plik;
     private String fileName;
-    MainPaneController merge;
 
     // Gettery & Settery
     public File getPlik() {
@@ -49,18 +45,8 @@ public class BottomPaneController implements Initializable {
         return createButton;
     }
 
-    public void setCreateButton(Button createButton) {
-        this.createButton = createButton;
-    }
-
-    public String getFileName() {
-        System.out.println(fileName);
-        return fileName;
-    }
-
-    public String setFileName(String fileName) {
+    public void setFileName(String fileName) {
         this.fileName = fileName;
-        return this.fileName;
     }
 
     private void getFileName(File file, String string) {
@@ -71,8 +57,7 @@ public class BottomPaneController implements Initializable {
     public String date() {
         Date currentDate = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-        String dateString = dateFormat.format(currentDate);
-        return dateString;
+        return dateFormat.format(currentDate);
     }
 
     ////////////////////////////////////////////////////////////////
@@ -85,62 +70,52 @@ public class BottomPaneController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
         // Tooltip do przycisku z wyborem umowy
-        Tooltip tooltip = new Tooltip();
-        tooltip.setText("Wybierz plik z odpowiednim regulaminem");
+        Tooltip tooltip = new Tooltip("Wybierz plik z odpowiednim regulaminem");
         selectUmowaButton.setTooltip(tooltip);
 
-        // Tooltip do przycisku utw�rz
-        Tooltip tooltip2 = new Tooltip();
-        tooltip2.setText("Utwórz gotowy plik z umowę");
+        // Tooltip do przycisku utwórz
+        Tooltip tooltip2 = new Tooltip("Utwórz gotowy plik z umowę");
         createButton.setTooltip(tooltip2);
 
         // Wybór umowy
-        selectUmowaButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                // Wywołanie okna przelgądania plików
-                try {
-                    FileChooser umowaFC = new FileChooser();
-                    umowaFC.setTitle("Wybierz plik z regulaminem");
-                    umowaFC.getExtensionFilters().addAll(new ExtensionFilter("PDF plik", "*.pdf"));
-                    setPlik(umowaFC.showOpenDialog(new Stage()));
-                    umowaDirTextField.setText(plik.getPath());
-                    getFileName(plik, fileName);
-                } catch (NullPointerException e) {
-                    Alerts.alertWarning("Nie wybrano pliku!", null, "Proszę o wybranie z dysku regulaminu. \nRegulamin nie został wczytany.");
-                } catch (Exception e) {
-                    System.err.println("...........................................................");
-                    System.err.println("Nastąpił wyjątek przy wczytywaniu pliku regulamin z dysku.");
-                    System.err.println("...........................................................");
-                    e.printStackTrace();
-                }
+        selectUmowaButton.setOnAction(event -> {
+            // Wywołanie okna przelgądania plików
+            try {
+                FileChooser umowaFC = new FileChooser();
+                umowaFC.setTitle("Wybierz plik z regulaminem");
+                umowaFC.getExtensionFilters().addAll(new ExtensionFilter("Plik PDF", "*.pdf"));
+                setPlik(umowaFC.showOpenDialog(new Stage()));
+                umowaDirTextField.setText(plik.getPath());
+                getFileName(plik, fileName);
+            } catch (NullPointerException e) {
+                Alerts.alertWarning("Nie wybrano pliku!", null, "Proszę o wybranie z dysku regulaminu. \nRegulamin nie został wczytany.");
+            } catch (Exception e) {
+                System.err.println("...........................................................");
+                System.err.println("Nastąpił wyjątek przy wczytywaniu pliku regulamin z dysku.");
+                System.err.println("...........................................................");
+                e.printStackTrace();
             }
         });
         
         // Funkcja Drag&Drop dla wyboru pliku z regulaminami.
-        umowaDirTextField.setOnDragOver(new EventHandler<DragEvent>() {
+        umowaDirTextField.setOnDragOver(event -> {
+            Dragboard drag = event.getDragboard();
+            boolean success = false;
 
-            @Override
-            public void handle(DragEvent event) {
-                Dragboard drag = event.getDragboard();
-                boolean success = false;
+            if (drag.hasFiles()) {
+                success = true;
+                String pathFileAA = null;
+                event.acceptTransferModes(TransferMode.ANY);
 
-                if (drag.hasFiles()) {
-                    success = true;
-                    String pathFileAA = null;
-                    event.acceptTransferModes(TransferMode.ANY);
-
-                    for (File file : drag.getFiles()) {
-                        pathFileAA = file.getAbsolutePath();
-                        System.out.println(pathFileAA);
-                        umowaDirTextField.setText(pathFileAA);
-                        plik = new File(pathFileAA);
-                    }
+                for (File file : drag.getFiles()) {
+                    pathFileAA = file.getAbsolutePath();
+//                    System.out.println(pathFileAA);
+                    umowaDirTextField.setText(pathFileAA);
+                    plik = new File(pathFileAA);
                 }
-                event.setDropCompleted(success);
-                event.consume();
             }
-
+            event.setDropCompleted(success);
+            event.consume();
         });
     }
 

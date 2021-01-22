@@ -24,7 +24,7 @@ public class MenuController implements Initializable {
 	@FXML
 	private MenuItem settingsMenuItems;
 
-	final private String VER = "v1.5.0";
+	final private String VER = "v1.6.0";
         
     ////////////////////////////////////////////////////////////////
     //                                                            //
@@ -36,27 +36,16 @@ public class MenuController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		// Menu Info
-		infoMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				Alerts.alertInfo(
-						"Informacja",
-						"PDF Fusion " + VER + "\nStworzona na potrzeby MAKSIMUM Sp. z o.o. HOLDING S.K.A.",
-						"Autor: Mateusz Dąbek\nKontakt e-mail: mateusz.dabek@opal2.pl"	+ "\nTelefon: 601 459 758"
-				);
-			}
-		});
+		infoMenuItem.setOnAction(event -> Alerts.alertInfo(
+				"Informacja",
+				"PDF Fusion " + VER + "\nStworzona na potrzeby MAKSIMUM Sp. z o.o. HOLDING S.K.A.",
+				"Autor: Mateusz Dąbek\nKontakt e-mail: mateusz.dabek@opal2.pl"	+ "\nTelefon: 601 459 758"
+		));
 
 		// Menu Close
-		closeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("Stop App z menu");
-				System.exit(0);
-			}
-
+		closeMenuItem.setOnAction(event -> {
+			System.out.println("Stop App z menu");
+			System.exit(0);
 		});
 
 		// Menu Ustawienia

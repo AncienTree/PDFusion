@@ -2,14 +2,12 @@ package com.pl.maksimum;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 
 public class Main extends Application {
 
@@ -35,12 +33,9 @@ public class Main extends Application {
             primaryStage.show();
             
             // Przycisk zamykania wyłącza cały program i wszystkie okna
-            primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent t) {
-                    Platform.exit();
-                    System.exit(0);
-                }
+            primaryStage.setOnCloseRequest(x -> {
+                Platform.exit();
+                System.exit(0);
             });
 
         } catch (Exception e) {

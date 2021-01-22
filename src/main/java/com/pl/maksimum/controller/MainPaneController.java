@@ -18,8 +18,6 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -188,10 +186,8 @@ public class MainPaneController implements Initializable {
             PDDocument doc = PDDocument.load(file);
             PDPage page = doc.getPage(0);
             PDImageXObject pdImage = PDImageXObject.createFromFile(currentDir + "\\sign\\stamp1.gif", doc);
-            @SuppressWarnings("deprecation")
-            PDPageContentStream contentStream = new PDPageContentStream(doc, page, true, true);
-            //PLK
-            //contentStream.drawImage(pdImage, 300, 125, 260, 100);
+            PDPageContentStream contentStream = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.APPEND, true);
+
             //ELA
             contentStream.drawImage(pdImage, 320, 60, 260, 80);
             contentStream.close();
@@ -200,10 +196,10 @@ public class MainPaneController implements Initializable {
         } catch (Exception e) {
             Alerts.alertError("Error", null, "Error, insert signature file AA encountered an error.");
 
-            e.printStackTrace();
             System.err.println(".....................................................");
             System.err.println("Nastąpił wyjątek przy wstawianiu podpisu do pliku AA.");
             System.err.println(".....................................................");
+            e.printStackTrace();
         }
     }
 
@@ -307,6 +303,7 @@ public class MainPaneController implements Initializable {
             System.err.println("..................................");
         }
     }
+
     ////////////////////////////////////////////////////////////////
     //                                                            //
     //                       initialize                           //
@@ -322,16 +319,13 @@ public class MainPaneController implements Initializable {
         yesFile = new File(currentDir + "\\doc\\4.ostak.pdf");
         noFile = new File(currentDir + "\\doc\\4.osnie.pdf");
 
-        bottomPaneController.getCreateButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                // Protection statement
-                if (choiceOfConsentController.getTakZgodaCheckBox().isSelected()
-                        || choiceOfConsentController.getNieZgodaCheckBox().isSelected()) {
-                    createAgreement();
-                } else {
-                    Alerts.alertError("Nie wybrano opcji.", null, "Proszę zaznaczyć jedną z opcji oświadczenie zgody!");
-                }
+        bottomPaneController.getCreateButton().setOnAction(event -> {
+            // Protection statement
+            if (choiceOfConsentController.getTakZgodaCheckBox().isSelected()
+                    || choiceOfConsentController.getNieZgodaCheckBox().isSelected()) {
+                createAgreement();
+            } else {
+                Alerts.alertError("Nie wybrano opcji.", null, "Proszę zaznaczyć jedną z opcji oświadczenie zgody!");
             }
         });
 
